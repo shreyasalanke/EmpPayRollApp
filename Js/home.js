@@ -1,10 +1,16 @@
+let employeePayrollList;
 window.addEventListener("DOMContentLoaded", (event) => {
+    employeePayrollList = getEmployeePayrollDataFromStorage();
+    document.querySelector(".emp-count").textContent = employeePayrollList.length;
     createInnerHtml();
 });
+const getEmployeePayrollDataFromStorage = () => {
+    return localStorage.getItem('EmployeePayrollList') ? JSON.parse(localStorage.getItem('EmployeePayrollList')) : [];
+}
 const createInnerHtml = () => {
     const headerHtml = "<tr><th></th><th>Name</th><th>Gender</th><th>Department</th><th>Salary</th><th>Start Date</th><th>Actions</th></tr>"
+    if (employeePayrollList.length == 0) return;
     let innerHtml = `${headerHtml}`;
-    let employeePayrollList = createEmployeePayrollJSON();
     for (const employeePayrollData of employeePayrollList) {
         innerHtml = `${innerHtml}
         <tr>
@@ -15,8 +21,8 @@ const createInnerHtml = () => {
             <td>${employeePayrollData._salary}</td>
             <td>${employeePayrollData._startDate}</td>
             <td>
-                <img name="${employeePayrollData._id}" onclick="remove(this)" alt="delete" src="C:\Users\HP\OneDrive\Desktop\EmpPayrollApp\asserts\icon\delete-black-18dp.svg">
-                <img name="${employeePayrollData._id}" alt="edit" onclick="update(this)" src="C:\Users\HP\OneDrive\Desktop\EmpPayrollApp\asserts\icon\create-black-18dp.svg">
+                <img id="${employeePayrollData._id}" onclick="remove(this)" alt="delete" src="C:\Users\Lavanya\Desktop\EmployeePayrollPay\Asserts\Icons\delete-black-18dp.svg">
+                <img id="${employeePayrollData._id}" alt="edit" onclick="update(this)" src="C:\Users\Lavanya\Desktop\EmployeePayrollPay\Asserts\Icons\create-black-18dp.svg">
             </td>
         </tr>
         `;
@@ -26,23 +32,23 @@ const createInnerHtml = () => {
 const createEmployeePayrollJSON = () => {
     let employeePayrollListLocal = [{
             _id: new Date().getTime(),
-            _name: "Shreya",
-            _salary: "$ 150000",
-            _gender: "Female",
+            _name: "Lavanya",
+            _salary: "$ 100000",
+            _gender: "female",
             _department: ["Engineering"],
-            _notes: "Good Employee",
-            _profile: "C:\Users\HP\OneDrive\Desktop\EmpPayrollApp\asserts\ProfilePic\Ellipse -3.png",
-            _startDate: "18/02/2016, 11:11:00 AM"
+            _notes: "Nice",
+            _profile: "C:\Users\Lavanya\Desktop\EmployeePayrollPay\Asserts\Profile-Images\Ellipse -1.png",
+            _startDate: "18/09/2020, 12:00:00 AM"
         },
         {
             _id: new Date().getTime() + 1,
-            _name: "Sharan",
-            _salary: "$ 180000",
-            _gender: "Male",
-            _department: ["Finance", "Sales"],
-            _notes: null,
-            _profile: "C:\Users\HP\OneDrive\Desktop\EmpPayrollApp\asserts\ProfilePic\Ellipse -8.png",
-            _startDate: "18/02/2016, 11:11:08 AM"
+            _name: "Sandhiya",
+            _salary: "$ 70000",
+            _gender: "female",
+            _department: ["Engineering", "Sales"],
+            _notes: "null",
+            _profile: "C:\Users\Lavanya\Desktop\EmployeePayrollPay\Asserts\Profile-Images\Ellipse -7.png",
+            _startDate: "8/12/2019, 12:00:00 AM"
         }
     ];
     return employeePayrollListLocal;
@@ -53,4 +59,16 @@ const getDeptHtml = (deptList) => {
         deptHtml = `${deptHtml} <div class="dept-label">${dept}</div>`
     }
     return deptHtml;
+}
+function remove(node){
+    let empPayrollData = employeePayrollList.find(empData => empData._id == node.id);
+    if (!empPayrollData) return;
+    const index = employeePayrollList
+        .map(empData => empData._id)
+        .indexOf(empPayrollData._id);
+    employeePayrollList.splice(index, 1);
+    localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList));
+    document.querySelector('.emp-count').textContent = employeePayrollList.length;
+    alert("User deleted is : "+empPayrollData._name+"with id :"+empPayrollData._id);
+    createInnerHtml();
 }
