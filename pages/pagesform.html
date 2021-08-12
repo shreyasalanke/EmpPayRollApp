@@ -6,56 +6,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="C:\Users\HP\OneDrive\Desktop\EmpPayrollApp\css\payrollform.css">
+    <link rel="shortcut icon" href="C:\Users\HP\OneDrive\Desktop\EmpPayrollApp\asserts\Images\logo.png">
     <title>Employee payroll form</title>
-    <script defer src="C:\Users\HP\OneDrive\Desktop\EmpPayrollApp\Js\EmpPayroll.js"></script>
     <script defer src="C:\Users\HP\OneDrive\Desktop\EmpPayrollApp\Js\payrollform.js"></script>
+    <script defer src="C:\Users\HP\OneDrive\Desktop\EmpPayrollApp\Js\EmpPayroll.js"></script>
 </head>
 
 <body>
     <!-- UC 1 -->
     <header class="header-content header">
         <div class="logo-content">
-            <img src="C:\Users\HP\OneDrive\Desktop\EmpPayrollApp\asserts\Images\logo.png" alt="">
-            <div>
-                <span class="emp-text">EMPLOYEE PAYROLL</span>
-            </div>
+            <a href="C:\Users\HP\OneDrive\Desktop\EmpPayrollApp\pages\home.html" class ="linkHome">
+                <img src="C:\Users\HP\OneDrive\Desktop\EmpPayrollApp\asserts\Images\logo.png" alt="" class="logoImg">
+            </a>
+            <a href="C:\Users\HP\OneDrive\Desktop\EmpPayrollApp\pages\home.html" class ="linkHome">
+                <div>
+                    <span class="emp-text">EMPLOYEE</span><br>
+                    <span class="emp-text emp-payroll">PAYROLL</span>
+                </div>
+            </a>
         </div>
     </header>
 
     <div class="form-content">
-        <form class="form" action="#" onsubmit="save(event);return false">
+        <form class="form" action="#" onsubmit="save()" onreset="resetForm()">
             <!-- UC 2 -->
             <div class="form-head"> Employee Payroll form </div>
             <div class="row-content">
                 <label class="label text" for="name">Name</label>
                 <input class="input" type="text" id="name" name="name" placeholder="Your name.." required>
+                <error-output id="name-error" for="name"></error-output>
             </div>
             <div class="row-content">
                 <label class="label text" for="profile">Profile image</label>
                 <div class="profile-radio-content">
                     <label>
-                        <input type="radio" id="profile1" name="profile" value="../assets/profile-images/Ellipse -1.png"
+                        <input type="radio" id="profile1" name="profile" value="C:\Users\HP\OneDrive\Desktop\EmpPayrollApp\asserts\ProfilePic\Ellipse -3.png"
                             required>
-                        <img class="profile" id='image1' src="C:\Users\HP\OneDrive\Desktop\EmpPayrollApp\asserts\ProfilePic\Ellipse -1.png">
+                        <img class="profile" id='image1' src="C:\Users\HP\OneDrive\Desktop\EmpPayrollApp\asserts\ProfilePic\Ellipse -3.png">
                     </label>
                     <label>
-                        <input type="radio" id="profile2" name="profile" value="../assets/profile-images/Ellipse -2.png"
+                        <input type="radio" id="profile2" name="profile" value="C:\Users\HP\OneDrive\Desktop\EmpPayrollApp\asserts\ProfilePic\Ellipse -1.png"
                             required>
-                        <img class="profile" id='image2' src="C:\Users\HP\OneDrive\Desktop\EmpPayrollApp\asserts\ProfilePic\Ellipse -2.png">
+                        <img class="profile" id='image2' src="C:\Users\HP\OneDrive\Desktop\EmpPayrollApp\asserts\ProfilePic\Ellipse -1.png">
                     </label>
                     <label>
-                        <input type="radio" id="profile3" name="profile" value="../assets/profile-images/Ellipse -3.png"
+                        <input type="radio" id="profile3" name="profile" value="C:\Users\HP\OneDrive\Desktop\EmpPayrollApp\asserts\ProfilePic\Ellipse -8.png"
                             required>
-                        <img class="profile" id='image3' src="C:\Users\HP\OneDrive\Desktop\EmpPayrollApp\asserts\ProfilePic\Ellipse -3.png">
+                        <img class="profile" id='image3' src="C:\Users\HP\OneDrive\Desktop\EmpPayrollApp\asserts\ProfilePic\Ellipse -8.png">
                     </label>
                     <label>
-                        <input type="radio" id="profile4" name="profile" value="../assets/profile-images/Ellipse -4.png"
+                        <input type="radio" id="profile4" name="profile" value="C:\Users\HP\OneDrive\Desktop\EmpPayrollApp\asserts\ProfilePic\Ellipse -8.png"
                             required>
-                        <img class="profile" id='image4' src="C:\Users\HP\OneDrive\Desktop\EmpPayrollApp\asserts\ProfilePic\Ellipse -4.png">
+                        <img class="profile" id='image4' src="C:\Users\HP\OneDrive\Desktop\EmpPayrollApp\asserts\ProfilePic\Ellipse -7.png">
                     </label>
                 </div>
-
             </div>
+            <!-- UC 4 -->
             <div class="row-content">
                 <label class="label text" for="gender">Gender</label>
                 <div>
@@ -83,13 +90,14 @@
             <div class="row-content">
                 <label class="label text" for="salary">Salary</label>
                 <input class="input" type="range" name="salary" id="salary" min="300000" max="500000" step="100"
-                    value="500000">
-                <output class="salary-output text" for="salary">500000</output>
+                    value="400000">
+                <output class="salary-output text" for="salary">400000</output>
             </div>
+            <!-- UC 5-->
             <div class="row-content">
                 <label class="label text" for="startDate">Start Date</label>
                 <div>
-                    <select id="day" name="Day">
+                    <select id="startDate" class="day" name="Day" required>
                         <option>Day</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -123,7 +131,7 @@
                         <option value="30">30</option>
                         <option value="31">31</option>
                     </select>
-                    <select id="month" name="Month">
+                    <select id="startDate" class="month" name="Month">
                         <option>Month</option>
                         <option value=1>January</option>
                         <option value=2>February</option>
@@ -138,22 +146,26 @@
                         <option value=11>November</option>
                         <option value=12>December</option>
                     </select>
-                    <select id="year" name="Year">
+                    <select id="startDate" class="year" name="Year">
                         <option>Year</option>
                         <option value="2020">2020</option>
                         <option value="2019">2019</option>
                         <option value="2018">2018</option>
                         <option value="2017">2017</option>
                         <option value="2016">2016</option>
+                        <option value="2015">2015</option>
+                        <option value="2014">2014</option>
                     </select>
                 </div>
+                <error-output id="date-error" for="startDate"></error-output>
             </div>
+            <!-- UC 6-->
             <div class="row-content">
                 <label class="label text" for="notes">Notes</label>
-                <textarea id="notes" class="input" name="Notes" placeholder="" style="height: 100px;"></textarea>
+                <textarea id="note" class="input" name="Notes" placeholder="" style="height: 100px;"></textarea>
             </div>
             <div class="buttonParent">
-                <a href="./home.html" class="resetButton button cancelButton">Cancel</a>
+                <a href="C:\Users\HP\OneDrive\Desktop\EmpPayrollApp\pages\home.html" class="resetButton button cancelButton">Cancel</a>
                 <div class="submit-reset">
                     <button type="submit" class="submitButton button" id="submitButton">Submit</button>
                     <button type="reset" class="resetButton button">Reset</button>
